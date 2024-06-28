@@ -16,6 +16,15 @@ resource "aws_flow_log" "flow_log_minha_vpc" {
   vpc_id = aws_vpc.minha_vpc.id
 }
 
+# Correção segunda issue do checkov
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.minha_vpc.id
+  
+  tags = {
+    Name = "iac-sg"
+  }
+}
+
 ### SUBNETS ###
 
 resource "aws_subnet" "public-subnet-1a" {
