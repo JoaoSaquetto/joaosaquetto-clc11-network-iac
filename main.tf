@@ -8,6 +8,13 @@ resource "aws_vpc" "minha_vpc" {
   }
 }
 
+# Correção primeira issue do checkov
+resource "aws_flow_log" "flow_log_minha_vpc" {
+  log_destination = "arn:aws:s3:::joaosaquetto-clc11-tfstate"
+  log_destination_type = "s3"
+  traffic_type = "ALL"
+  vpc_id = aws_vpc.minha_vpc.id
+}
 
 ### SUBNETS ###
 
