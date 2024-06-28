@@ -10,7 +10,7 @@ env:
   AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 
 jobs:
-  build:
+  Checkov:
     name: 'Check Tf Vuls'
     runs-on: ubuntu-latest
     steps:
@@ -29,6 +29,7 @@ jobs:
     name: 'Apply Changes'
     runs-on: ubuntu-latest
     environment: aws_credentials
+    needs: Checkov
 
     defaults:
       run:
